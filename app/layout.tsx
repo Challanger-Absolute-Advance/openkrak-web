@@ -3,9 +3,9 @@ import "./globals.css";
 import Script from "next/script";
 
 export const metadata: Metadata = {
-  title: "OpenKrak — AI Coding Agent",
-  description: "AI coding assistant with Power Mode. Pre-computes repo analysis for faster, cheaper LLM responses.",
-  keywords: ["ai", "coding", "cli", "power mode", "opencode"],
+  title: "OpenKrak",
+  description: "MCP server for developer tooling. Static analysis via the Dorchester engine — delivered to your coding agent before any file is read.",
+  keywords: ["mcp", "developer tools", "static analysis", "opencode", "coding agent"],
 };
 
 export default function RootLayout({
