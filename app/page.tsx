@@ -86,7 +86,7 @@ export default function Home() {
     "openkrak": {
       "type": "local",
       "enabled": true,
-      "command": ["npx", "openkrak-mcp"]
+      "command": ["npx", "--yes", "openkrak-mcp"]
     }
   }
 }`;
