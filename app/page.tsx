@@ -179,7 +179,7 @@ export default function Home() {
         </h1>
         <div className="fade-up d2" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "80px", alignItems: "end" }}>
           <p style={{ fontSize: "18px", lineHeight: 1.7, color: "#555", fontWeight: 400 }}>
-            OpenKrak runs the Dorchester engine on your repo &mdash; dependency graphs, hotspot scoring, blast radius analysis &mdash; and delivers a structured brief to the LLM before it touches a single file. Supports TypeScript, JavaScript, Python, Go, Rust, Java, and C#.
+            OpenKrak runs the Dorchester engine on your repo &mdash; dependency graphs, hotspot scoring, blast radius analysis &mdash; and delivers a structured brief directly into Claude&rsquo;s context before it touches a single file. Built for Claude Code. Supports TypeScript, JavaScript, Python, Go, Rust, Java, and C#.
           </p>
           <div style={{ display: "flex", flexDirection: "column", gap: "12px" }}>
             <div style={{ fontFamily: "'Press Start 2P', monospace", fontSize: "10px", color: "#bbb", letterSpacing: "0.08em", marginBottom: "4px" }}>INSTALL</div>
