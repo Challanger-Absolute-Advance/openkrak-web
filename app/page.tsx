@@ -81,30 +81,29 @@ export default function Home() {
   }, []);
 
   const mcpConfig = `{
-  "$schema": "https://opencode.ai/config.json",
-  "mcp": {
+  "mcpServers": {
     "openkrak": {
-      "type": "local",
-      "enabled": true,
-      "command": ["npx", "--yes", "openkrak-mcp"]
+      "type": "stdio",
+      "command": "npx",
+      "args": ["-y", "openkrak-mcp@1.3.0"]
     }
   }
 }`;
 
   const configPath = {
     desktop: {
-      windows: `C:\\Users\\<username>\\.config\\opencode\\opencode.jsonc`,
-      mac: `~/.config/opencode/opencode.jsonc`,
+      windows: `C:\\Users\\<username>\\AppData\\Local\\Claude\\claude_desktop_config.json`,
+      mac: `~/Library/Application Support/Claude/claude_desktop_config.json`,
     },
     tui: {
-      windows: `C:\\Users\\<username>\\.config\\opencode\\opencode.jsonc`,
-      mac: `~/.config/opencode/opencode.jsonc`,
+      windows: `C:\\Users\\<username>\\AppData\\Local\\Claude\\claude_desktop_config.json`,
+      mac: `~/Library/Application Support/Claude/claude_desktop_config.json`,
     },
   };
 
   const connectedNote = {
-    desktop: `Restart OpenCode Desktop. Look for the green MCP dot in the bottom status bar — "openkrak Connected".`,
-    tui: `Restart OpenCode TUI. Look for "openkrak Connected" in the top-right MCP panel.`,
+    desktop: `Restart Claude Desktop. Look for the hammer icon in the chat input — openkrak tools will appear there.`,
+    tui: `Restart Claude Code. OpenKrak loads automatically when .mcp.json is present in your project root.`,
   };
 
   return (
@@ -167,11 +166,11 @@ export default function Home() {
       {/* Hero */}
       <section style={{ padding: "120px 72px 100px", maxWidth: "1200px", width: "100%", margin: "0 auto" }}>
         <div className="fade-up d1" style={{ display: "flex", gap: "10px", marginBottom: "32px", flexWrap: "wrap" }}>
-          <span className="agent-badge badge-on">&#10003; OpenCode Desktop</span>
-          <span className="agent-badge badge-on">&#10003; OpenCode TUI</span>
-          <span className="agent-badge badge-soon">Claude Code &mdash; soon</span>
+          <span className="agent-badge badge-on">&#10003; Claude Code</span>
+          <span className="agent-badge badge-on">&#10003; Claude Desktop</span>
           <span className="agent-badge badge-soon">Codex &mdash; soon</span>
-          <span className="agent-badge badge-soon">Cursor &mdash; soon</span>
+          <span className="agent-badge badge-soon">Windsurf &mdash; soon</span>
+          <span className="agent-badge badge-soon">Codex &mdash; soon</span>
         </div>
         <h1 className="fade-up d1" style={{ fontSize: "clamp(48px, 7vw, 88px)", fontWeight: 700, lineHeight: 1.04, letterSpacing: "-0.03em", color: "#0a0a0a", maxWidth: "900px", marginBottom: "40px" }}>
           Your codebase, pre-computed{" "}
@@ -184,8 +183,8 @@ export default function Home() {
           <div style={{ display: "flex", flexDirection: "column", gap: "12px" }}>
             <div style={{ fontFamily: "'Press Start 2P', monospace", fontSize: "10px", color: "#bbb", letterSpacing: "0.08em", marginBottom: "4px" }}>INSTALL</div>
             <div className="code-block-wrap">
-              <div className="code-box">npm install -g openkrak-mcp</div>
-              <button className="copy-btn" data-copy="npm install -g openkrak-mcp">copy</button>
+              <div className="code-box">npx openkrak-init</div>
+              <button className="copy-btn" data-copy="npx openkrak-init">copy</button>
             </div>
             <button onClick={() => (window as any).__okModal("monthly")} style={{ background: "#0a0a0a", color: "#fff", border: "none", padding: "16px 32px", fontSize: "14px", fontWeight: 600, letterSpacing: "0.02em", cursor: "pointer", fontFamily: "inherit" }}>
               Go Pro &mdash; $8/month
@@ -198,8 +197,8 @@ export default function Home() {
       <section id="tutorial" style={{ padding: "80px 72px", maxWidth: "1200px", width: "100%", margin: "0 auto" }}>
         <div style={{ fontFamily: "'Press Start 2P', monospace", fontSize: "9px", color: "#bbb", letterSpacing: "0.15em", marginBottom: "16px" }}>TUTORIAL</div>
         <div style={{ display: "flex", gap: "0", marginBottom: "40px", alignItems: "center" }}>
-          <button className={`tab-btn ${client === "desktop" ? "tab-active" : "tab-inactive"}`} onClick={() => setClient("desktop")}>OpenCode Desktop</button>
-          <button className={`tab-btn ${client === "tui" ? "tab-active" : "tab-inactive"}`} onClick={() => setClient("tui")}>OpenCode TUI</button>
+          <button className={`tab-btn ${client === "desktop" ? "tab-active" : "tab-inactive"}`} onClick={() => setClient("desktop")}>Claude Desktop</button>
+          <button className={`tab-btn ${client === "tui" ? "tab-active" : "tab-inactive"}`} onClick={() => setClient("tui")}>Claude Code</button>
         </div>
 
         <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "80px" }}>
@@ -210,8 +209,8 @@ export default function Home() {
               <div>
                 <div style={{ fontSize: "14px", fontWeight: 700, color: "#0a0a0a", marginBottom: "10px" }}>Install OpenKrak</div>
                 <div className="code-block-wrap" style={{ marginBottom: "10px" }}>
-                  <div style={{ background: "#f5f5f5", padding: "12px 16px", fontFamily: "monospace", fontSize: "12px", color: "#0a0a0a", paddingRight: "52px" }}>npm install -g openkrak-mcp</div>
-                  <button className="copy-btn" data-copy="npm install -g openkrak-mcp">copy</button>
+                  <div style={{ background: "#f5f5f5", padding: "12px 16px", fontFamily: "monospace", fontSize: "12px", color: "#0a0a0a", paddingRight: "52px" }}>npx openkrak-init</div>
+                  <button className="copy-btn" data-copy="npx openkrak-init">copy</button>
                 </div>
                 <p style={{ fontSize: "13px", color: "#777", lineHeight: 1.6 }}>Requires Node.js ≥ 18.</p>
               </div>
@@ -220,9 +219,9 @@ export default function Home() {
             <div className="tutorial-step">
               <div className="step-num">2</div>
               <div>
-                <div style={{ fontSize: "14px", fontWeight: 700, color: "#0a0a0a", marginBottom: "10px" }}>Open your OpenCode config</div>
+                <div style={{ fontSize: "14px", fontWeight: 700, color: "#0a0a0a", marginBottom: "10px" }}>Verify generated files</div>
                 <p style={{ fontSize: "13px", color: "#777", lineHeight: 1.6, marginBottom: "10px" }}>
-                  {client === "desktop" ? "In OpenCode Desktop: Settings → MCP → Edit Config File. Or open manually:" : "Open the file directly:"}
+                  {client === "desktop" ? "For Claude Desktop, also add to global config: → MCP → Edit Config File. Or open manually:" : "openkrak-init creates .mcp.json in your project root. Claude Code reads it automatically."}
                 </p>
                 <div style={{ background: "#f5f5f5", padding: "10px 14px", fontFamily: "monospace", fontSize: "11px", color: "#555", marginBottom: "6px" }}>
                   Windows: {configPath[client].windows}
@@ -236,7 +235,7 @@ export default function Home() {
             <div className="tutorial-step">
               <div className="step-num">3</div>
               <div>
-                <div style={{ fontSize: "14px", fontWeight: 700, color: "#0a0a0a", marginBottom: "10px" }}>Add OpenKrak to the config</div>
+                <div style={{ fontSize: "14px", fontWeight: 700, color: "#0a0a0a", marginBottom: "10px" }}>Config format (.mcp.json)</div>
                 <div className="code-block-wrap">
                   <div style={{ background: "#f5f5f5", padding: "12px 16px", fontFamily: "monospace", fontSize: "11px", color: "#0a0a0a", whiteSpace: "pre-wrap", lineHeight: 1.6, paddingRight: "52px" }}>{mcpConfig}</div>
                   <button className="copy-btn" data-copy={mcpConfig}>copy</button>
@@ -247,7 +246,7 @@ export default function Home() {
             <div className="tutorial-step">
               <div className="step-num">4</div>
               <div>
-                <div style={{ fontSize: "14px", fontWeight: 700, color: "#0a0a0a", marginBottom: "10px" }}>Restart OpenCode</div>
+                <div style={{ fontSize: "14px", fontWeight: 700, color: "#0a0a0a", marginBottom: "10px" }}>Restart Claude</div>
                 <p style={{ fontSize: "13px", color: "#777", lineHeight: 1.6 }}>{connectedNote[client]}</p>
               </div>
             </div>
@@ -255,13 +254,13 @@ export default function Home() {
             <div className="tutorial-step">
               <div className="step-num">5</div>
               <div>
-                <div style={{ fontSize: "14px", fontWeight: 700, color: "#0a0a0a", marginBottom: "10px" }}>Run your first analysis</div>
-                <p style={{ fontSize: "13px", color: "#777", lineHeight: 1.6, marginBottom: "10px" }}>Open a repo in OpenCode and send:</p>
+                <div style={{ fontSize: "14px", fontWeight: 700, color: "#0a0a0a", marginBottom: "10px" }}>Start coding</div>
+                <p style={{ fontSize: "13px", color: "#777", lineHeight: 1.6, marginBottom: "10px" }}>Open your repo in Claude Code or Claude Desktop and send:</p>
                 <div className="code-block-wrap">
                   <div style={{ background: "#f5f5f5", padding: "12px 16px", fontFamily: "monospace", fontSize: "12px", color: "#0a0a0a", paddingRight: "52px" }}>analyze_repo on /path/to/your/repo</div>
                   <button className="copy-btn" data-copy="analyze_repo on /path/to/your/repo">copy</button>
                 </div>
-                <p style={{ fontSize: "13px", color: "#777", lineHeight: 1.6, marginTop: "10px" }}>OpenKrak also runs automatically when you give OpenCode a coding task — no manual invocation needed.</p>
+                <p style={{ fontSize: "13px", color: "#777", lineHeight: 1.6, marginTop: "10px" }}>Claude reads CLAUDE.md on every turn — it calls OpenKrak before touching any file.</p>
               </div>
             </div>
           </div>
@@ -421,7 +420,7 @@ export default function Home() {
           </p>
           <div style={{ background: "#f7f7f7", padding: "20px 24px", marginBottom: "32px" }}>
             <div style={{ fontSize: "11px", fontWeight: 700, color: "#0a0a0a", letterSpacing: "0.05em", marginBottom: "12px" }}>WHAT HAPPENS NEXT</div>
-            {["Complete checkout on Payhip", "License key sent instantly to your email", "Add to OpenCode config: OPENKRAK_KEY=your-key", "Unlimited queries, active immediately"].map((s, i) => (
+            {["Complete checkout on Payhip", "License key sent instantly to your email", "Add to .mcp.json env: OPENKRAK_KEY=your-key", "Unlimited queries, active immediately"].map((s, i) => (
               <div key={i} style={{ display: "flex", gap: "12px", fontSize: "13px", color: "#555", padding: "6px 0", borderTop: i > 0 ? "1px solid #eee" : "none" }}>
                 <span style={{ color: "#bbb", flexShrink: 0 }}>{i + 1}.</span>{s}
               </div>
